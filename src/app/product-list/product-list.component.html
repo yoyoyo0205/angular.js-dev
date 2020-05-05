@@ -1,0 +1,30 @@
+<h2>Products</h2>
+
+<div *ngFor="let product of products; index as productId">  <!-- 構造ディレクティブ *ngFor -->
+<!-- 構造ディレクティブ -->
+  <h3>
+    <a [title]="product.name + ' details'" [routerLink]="['/products',productId]">
+    {{product.name}}
+    </a>
+  </h3>
+  <p *ngIf="product.description">  
+    Description:{{product.description}}
+  </p>
+
+  <button (click)="share()">
+    Share
+  </button>
+
+<!--セレクタ-を指定し、コンポーネントを呼び出す -->
+<!--プロパティバインディング[]で、構造ディレクトリ*ngForで使用されている変数"product"を、コンポーネント@Input()デコレーターに渡す。 -->
+<app-product-alerts [product] = "product"
+                    (notify)="onNotify()">
+</app-product-alerts>
+
+</div>
+<!-- 
+Copyright Google LLC. All Rights Reserved.
+Use of this source code is governed by an MIT-style license that
+can be found in the LICENSE file at http://angular.io/license
+-->
+
